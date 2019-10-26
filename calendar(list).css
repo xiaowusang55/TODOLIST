@@ -1,0 +1,57 @@
+ul, li, p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cal-container {
+  width: 600px;
+  height: 352px;
+  box-shadow: 1px 1px 10px -3px #000;
+  padding-top: 8px;
+  font-size: 12px;
+}
+.cal-container .cal-weekday {
+  background-color: #f0f0f0;
+  width: 98%;
+  margin: 0 auto;
+}
+.cal-container .cal-weekday ul {
+  display: flex;
+  justify-content: space-around;
+}
+.cal-container .cal-weekday ul li {
+  padding: 12px 4px;
+}
+
+.cal-container .cal-days {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 6px;
+}
+.cal-container .cal-days ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cal-container .cal-days ul li {
+  text-align: center;
+  width: 84px;
+  height: 46px;
+  margin-bottom: 4px;
+}
+.cal-container .cal-days ul li p {
+  margin-bottom: 6px;
+}
+
+.cal-container .cal-days ul li>p:nth-child(2) span {
+  color: #39a1ec;
+}
+
+.cal-container .cal-days input[type="text"] {
+  width: 50px;
+  height: 22px;
+  text-align: center;
+  color: #39a1ec;
+}
+
+
+

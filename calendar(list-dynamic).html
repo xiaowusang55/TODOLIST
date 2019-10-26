@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/calendar(list).css">
+</head>
+<body>
+  <div class="cal-container">
+    <div class="cal-weekday">
+      <ul>
+        <li>周日</li>
+        <li>周一</li>
+        <li>周二</li>
+        <li>周三</li>
+        <li>周四</li>
+        <li>周五</li>
+        <li>周六</li>
+      </ul>
+    </div>
+    <div class="cal-days">
+      <ul class="cal-list">
+        <!-- <li><p>10-26</p><p><span>124</span>/619</p></li> -->
+        <!-- <li><p>10-26</p><p><input type="text" value="124"></p></li> -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+ 
+    let month_olypic = [31,29,31,30,31,30,31,31,30,31,30,31];
+    let month_normal = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    let calList = document.querySelector('.cal-list');
+    let my_date = new Date();
+    let my_year = my_date.getFullYear();
+    let my_month = my_date.getMonth(); 
+    let my_day = my_date.getDate();
+
+
+    function dayStart(month,year){
+      var tmpDate = new Date(year, month, 1);
+      return (tmpDate.getDay());
+    }
+
+    function daysMonth(month, year){
+      var tmp1 = year % 4;
+      var tmp2 = year % 100;
+      var tmp3 = year % 400;
+
+      if((tmp1 == 0 && tmp2 != 0) || (tmp3 == 0)){
+          return (month_olypic[month]);
+      }else{
+          return (month_normal[month]);
+      }
+    }
+
+    function refreshDate(){
+      var str = "";
+      var totalDay = daysMonth(my_month,my_year);
+      var firstDay = dayStart(my_month, my_year);
+
+      for(var i = 0; i < firstDay; i++){
+          str += `<li><p></p></li>`;
+      }
+
+      for(var i = 1; i <= totalDay; i++){
+        str += `<li><p>${my_month + 1}-${i}</p><p><input type="text" value="124"></p></li>`;
+      }
+      calList.innerHTML = str;
+  }
+  refreshDate();
+  </script>
+</body>
+</html>
