@@ -1,0 +1,237 @@
+html, body, ul, li, p {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style: none;
+}
+input, label, button {
+  cursor: pointer;
+}
+.checkout-content {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 9px -2px #000;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 2px;
+  position: relative;
+}
+.checkout-content .link {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.checkout-content .link a {
+  color: #1a8de6;
+  text-decoration-color: #1a8de6;
+  text-decoration-line: underline;
+}
+.checkout-content > div {
+  display: flex;
+  position: relative;
+  margin-bottom: 22px;
+  padding-left: 26px;
+}
+.checkout-content .real-charge {
+  color: #fe1e1e;
+  font-weight: bold;
+}
+.checkout-content .sales-proj > div > div {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 26px;
+  background-color: #fff;
+}
+.checkout-content .sales-proj > div > div > div {
+  margin-bottom: 12px;
+}
+.checkout-content > div:nth-child(1) p,
+.checkout-content > div:nth-child(2) p {
+  margin-right: 26px;
+}
+.checkout-content .sales-proj > div {
+  margin-right: 14px;
+}
+
+.checkout-content .sales-proj > div input[type="radio"]:checked ~ .cash-tab,
+.checkout-content .sales-proj > div input[type="radio"]:checked ~ .card-tab,
+.checkout-content .sales-proj > div input[type="radio"]:checked ~ .member-tab,
+.checkout-content .sales-proj > div input[type="radio"]:checked ~ .zhifubao-tab,
+.checkout-content .sales-proj > div input[type="radio"]:checked ~ .wechat-tab,
+.checkout-content .sales-proj > div input[type="radio"]:checked ~ .guazhang-tab
+{
+  display: block;
+}
+
+.checkout-content .sales-proj .cash-tab input,
+.checkout-content .sales-proj .card-tab input,
+.checkout-content .sales-proj .member-tab input,
+.checkout-content .sales-proj .zhifubao-tab input,
+.checkout-content .sales-proj .wechat-tab input,
+.checkout-content .sales-proj .guazhang-tab input
+{
+  width: 224px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  border: none;
+  border: 1px solid #d9d9d9;
+  margin-left: 16px;
+}
+.checkout-content .sales-proj .cash-tab span,
+.checkout-content .sales-proj .card-tab span,
+.checkout-content .sales-proj .member-tab span,
+.checkout-content .sales-proj .zhifubao-tab span,
+.checkout-content .sales-proj .wechat-tab span,
+.checkout-content .sales-proj .guazhang-tab span
+{
+  display: inline-block;
+  width: 56px;
+}
+.checkout-content .sales-proj .member-tab span {
+  width: 70px;
+}
+.checkout-content .sales-proj .zhifubao-tab span, 
+.checkout-content .sales-proj .wechat-tab span,
+.checkout-content .sales-proj .guazhang-tab span
+{
+  width: 84px;
+}
+.checkout-content .sales-proj .zhifubao-tab button, 
+.checkout-content .sales-proj .wechat-tab button {
+  margin-left: 28px;
+  width: 56px;
+  padding: 7px 10px;
+  border-radius: 4px;
+}
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(2){
+  display: flex;
+  line-height: 29px;
+}
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(2) > div input {
+  width: 10px;
+}
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(2) #guazhang-input > input {
+  width: 224px;
+}
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(2) #guazhang-input > span {
+  margin-left: 10px;
+}
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1572297687903'); /* IE9 */
+  src: url('iconfont.eot?t=1572297687903#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAKYAAsAAAAABkgAAAJOAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcApQYgE2AiQDCAsGAAQgBYRtBzQbjAXILrBt5DMbs3ZHiIInYQUAhEc8PH/sPfe99xfdOG+OpAoaSRT4CCY8kBb4/zd1v+ylD9kxJWMtm3T8S/aFn2MuVQ88v5YyRaNAuNah6QmeIUAt1OzcL5cYun3i3ukfBRTIfEA5rr1pUhdQFwdSQHtjFCdSQhk3jF3gEu4TaDAiIrA5MbcGNQprWSDuDC0NNbmgorBMnVBTs7eINxV16T4VALyG349/SEUNSSWzanZux3Mw9DVr55Rf3bFPCBHQ4QoyloBCHNQmt5QLxirXkKwwAfZVGXz5r/pmsVeDYH+dVd4EhqDwnkSu+FYzCW5rqE5gYNQbiM6D245cx91DF78+e813onaTf+5J9VWWPK+7OVgyRSli6ElLi8VQMAR/lt/TJgQQ/EdBafavprGAzw+/Q33Rzw3qduIKfoaoZ0fRJZYpFVVU25t0nqSuQQOqsLfD71ht95mzoU73CHet4RRZnSmyMJdQ0WgZNeqsoMGiycONOpFyUeqx4AogtPlE0uIDWZsvsjB/UNGjiBptUY4GR8GZjWbCqIswLTHHMnvMyAqXOxZZF1WuoLZlpykrCdkbSL4RYclYopiZRBdpjg3+tpaSkjNOwmET4DG0bcE8EiZmZUyX0uuJx3ndi2JZ4UCdDQSlSSiHydjDGLIEF/f7S3Wlz69Ami22NGppqwluQMRnjM4kxSR6kJNKt1fbvTzj26ZJkSSO4YjgYCbALGSzCYxXP8uEsqQYfUTc0yNud+N9lbH11c7XHYAGli6FPSZruCASO9Gc63ABAA==') format('woff2'),
+  url('iconfont.woff?t=1572297687903') format('woff'),
+  url('iconfont.ttf?t=1572297687903') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1572297687903#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down:before {
+  content: "\e64b";
+}
+.checkout-content .sales-proj .card-tab > div:nth-child(2),
+.checkout-content .sales-proj .member-tab > div:nth-child(2) {
+  position: relative;
+}
+.checkout-content .sales-proj .card-tab > div:nth-child(2) > i,
+.checkout-content .sales-proj .member-tab > div:nth-child(2) > i,
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(3) > i
+{
+  color: #d3d3d3;
+  position: absolute;
+  top: 8px;
+  left: 290px;
+  font-size: 14px;
+}
+.checkout-content .sales-proj .card-tab > div:nth-child(2) > div, 
+.checkout-content .sales-proj .member-tab > div:nth-child(2) > div,
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(3) > div  
+{
+  position: absolute;
+  top: 30px;
+  left: 72px;
+  height: 280px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  overflow: auto;
+  width: 240px;
+  z-index: 1;
+  display: none;
+}
+.checkout-content .sales-proj .card-tab > div:nth-child(2) > div p:nth-child(1) {
+  padding-top: 10px;
+  background-color: #ecf6fd;
+}
+.checkout-content .sales-proj .card-tab > div:nth-child(2) > div p,
+.checkout-content .sales-proj .member-tab > div:nth-child(2) > div p,
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(3) > div p
+ {
+  padding-left: 10px;
+  line-height: 32px;
+  cursor: pointer;
+}
+.checkout-content .sales-proj .card-tab > div:nth-child(2) > div p:hover,
+.checkout-content .sales-proj .member-tab > div:nth-child(2) > div p:hover,
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(3) > div p:hover
+ {
+  background-color: #ecf6fd;
+}
+.checkout-content .sales-proj .member-tab > div:nth-child(2) > i{
+  top: 8px;
+  left: 302px;
+}
+.checkout-content .sales-proj .member-tab > div:nth-child(2) > div {
+  top: 30px;
+  left: 86px;
+  height: 196px;
+}
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(3) > i {
+  top: 90px;
+  left: 316px;
+}
+.checkout-content .sales-proj .guazhang-tab > div:nth-child(3) > div {
+  top: 112px;
+  left: 100px;
+}
+
+.checkout-content .sales-proj > div .cash-tab div:nth-child(2) input {
+  width: 800px;
+}
+
+.print-recip {
+  margin-top: 180px;
+}
+.check-out-btn {
+  width: 110px;
+  margin: 0 auto;
+}
+.check-out-btn button {
+  border: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #000;
+  padding: 6px 14px;
+  outline: none;
+  margin-right: 2px;
+}
+.check-out-btn button:nth-child(1) {
+  background-color: #1a8de6;
+  color: #fff;
+  border: 1px solid transparent;
+}
+.check-out-btn button:hover {
+  border: 1px solid #1a8de6;
+}
