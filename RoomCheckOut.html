@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <div class="checkout-content">
+      <div>
+        <p><span>房型：</span>高级大床房1</p>
+        <p><span>房号：</span>88606</p>
+        <p><span>入住人：</span>1</p>
+      </div>
+      <div>
+        <p><span>总消费：</span>279元</p>
+        <p><span>总付款：</span>124元（挂账支付：124元）</p>
+        <p><span>应收：</span>155元</p>
+      </div>
+      <div>
+        <span>营业项目：</span>
+        <div>
+          <input type="radio" id="rd1" name="sale-proj">
+          <label for="rd1">现金</label>
+          <div class="cash-tab">
+            <div>
+              <span>金额：</span>
+              <input type="text" value="155">
+            </div>
+            <div>
+              <span>备注：</span>
+              <input type="text" placeholder="账号备注（选填）">
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="radio" id="rd2" name="sale-proj">
+          <label for="rd2">银行卡</label>
+          <div class="card-tab">
+            <div>
+              <span>金额：</span>
+              <input type="text" value="155">
+            </div>
+            <div>
+              <span>银行：</span><input type="text">
+              <div style="display: none">
+                <div>
+                  <p>民生银行</p>
+                  <p>光大银行</p>
+                  <p>中信银行</p>
+                  <p>浦发银行</p>
+                </div>
+              </div>
+              <span>卡号：</span><input type="text" placeholder="请选择">
+            </div>
+            <div>
+              <span>流水号：</span><input type="text" placeholder="银行卡号（选填）">
+            </div>
+            <div>
+              <span>备注：</span><input type="text" placeholder="账号备注（选填）">
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="radio" id="rd3" name="sale-proj">
+          <label for="rd3">会员卡</label>
+          <div class="member-tab">
+            <div>
+              <span>金额：</span>
+              <input type="text" value="155">
+            </div>
+            <div>
+              <span>会员卡：</span><input type="text">
+              <div style="display: none">
+                <div>
+                  <p></p>
+                </div>
+              </div>
+              <span>卡内余额：</span><input type="text" placeholder="0">
+            </div>
+            <div>
+              <span>单据号：</span><input type="text" placeholder="流水号（选填）">
+            </div>
+            <div>
+              <span>备注：</span><input type="text" placeholder="账号备注（选填）">
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="radio" id="rd4" name="sale-proj">
+          <label for="rd4">支付宝</label>
+          <div class="zhifubao-tab">
+            <div>
+              <span>金额：</span>
+              <input type="text" value="155">
+            </div>
+            <div>
+              <span>支付授权码：</span><input type="text" placeholder="支付授权码（必填）">
+              <button>补录</button>
+            </div>
+            <div>
+              <span>备注：</span><input type="text" placeholder="账号备注（选填）">
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="radio" id="rd5" name="sale-proj">
+          <label for="rd5">微信</label>
+          <div class="wechat-tab">
+            <div>
+              <span>金额：</span>
+              <input type="text" value="155">
+            </div>
+            <div>
+              <span>支付授权码：</span><input type="text" placeholder="支付授权码（必填）">
+              <button>补录</button>
+            </div>
+            <div>
+              <span>备注：</span><input type="text" placeholder="账号备注（选填）">
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="radio" id="rd6" name="sale-proj">
+          <label for="rd6">挂账</label>
+          <div class="guazhang-tab">
+            <div>
+              <span>金额：</span>
+              <input type="text" value="155">
+            </div>
+            <div>
+              <span>挂账方式：</span>
+              <div>
+                <input type="radio" name="guazhang" id="r-rd1">
+                <label for="r-rd1">单位</label>
+              </div>
+              <div>
+                <input type="radio" name="guazhang" id="r-rd2">
+                <label for="r-rd2">中介</label>
+              </div>
+              <div>
+                <input type="radio" name="guazhang" id="r-rd3">
+                <label for="r-rd3">代付</label>
+              </div>
+              <div>
+                <span>选择挂账：</span><input type="text">
+                <div style="display: none">
+                  <div>
+                    <p>民生银行</p>
+                    <p>光大银行</p>
+                    <p>中信银行</p>
+                    <p>浦发银行</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span>备注：</span><input type="text" placeholder="账号备注（选填）">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="print-recip">
+        <input type="checkbox" id="print-cb">
+        <label for="print-cb">打印单据</label>
+      </div>
+      <div>
+        <button>确定</button>
+        <button>取消</button>
+      </div>
+    </div>
+  </body>
+</html>
