@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/buyOnCredit.css">
+</head>
+<body>
+  <div class="buy-on-credit">
+    <div class="boc-top">
+      <p>
+        <span>房型：</span>
+        <span>高级大床房1</span>
+      </p>
+      <p>
+        <span>房号：</span>
+        <span>101</span>
+      </p>
+      <p>
+        <span>入住人：</span>
+        <span>mr.nobody</span>
+      </p>
+    </div>
+    <div class="boc-details">
+      <ul>
+        <li class="bd-total">
+          <span><i class="iconfont">&#xe6fc;</i>挂帐金额：</span>
+          <span><input type="number" value="66"><i class="iconfont ok">&#xe8b6;</i></span>
+        </li>
+        <li class="bd-way">
+          <span><i class="iconfont">&#xe6fc;</i>挂帐方式：</span>
+          <span>
+            <input type="radio" id="bd-cb1" name="methods">
+            <label for="bd-cb1">单位</label>
+          </span>
+          <span>
+            <input type="radio" id="bd-cb2" name="methods">
+            <label for="bd-cb2">中介</label>
+          </span>
+          <span>
+            <input type="radio" id="bd-cb3" name="methods">
+            <label for="bd-cb3">代付</label>
+          </span>
+          <i class="iconfont ok">&#xe8b6;</i>
+        </li>
+        <li class="bd-option">
+          <span><i class="iconfont">&#xe6fc;</i>选择挂帐：</span>
+          <span><input id="bd-toggle-input" type="text" placeholder="请选择"><i class="iconfont arrow-down">&#xe64b;</i><i class="iconfont ok">&#xe8b6;</i></span>
+          <div class="bp-dropdown">
+            <ul>
+              <li>fsfsfsfskljl</li>
+              <li>fsfsfsfskljl</li>
+              <li>fsfsfsfskljl</li>
+              <li>fsfsfsfskljl</li>
+              <li>fsfsfsfskljl</li>
+            </ul>
+          </div>
+        </li>
+        <li class="bd-comment">
+          <span>备注：</span>
+          <textarea cols="28" rows="5" placeholder="请输入备注内容"></textarea>
+          <i class="iconfont ok">&#xe8b6;</i>
+        </li>
+      </ul>
+    </div>
+    <div class="boc-btn">
+      <button>确定</button>
+      <button>取消</button>
+    </div>
+  </div>
+
+  <script src="./js/jquery-3.4.1.js"></script>
+  <script>
+    $("#bd-toggle-input").click(function() {
+      $(".bp-dropdown").slideToggle('fast');
+      $(".iconfont.arrow-down").toggleClass('active-arrow');
+    })
+    $("#bd-toggle-input").blur(function() {
+      $(".bp-dropdown").css('display', 'none');
+      $(".iconfont.arrow-down").removeClass('active-arrow');
+    })
+  </script>
+</body>
+</html>
