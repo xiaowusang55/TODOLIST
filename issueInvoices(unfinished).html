@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/issueInvoices.css">
+</head>
+
+<body>
+  <div class="issue-invoices">
+    <div class="ii-details">
+      <div class="id-info">
+        <div class="id-info-cate">
+          <div>
+            <span>开票类型：</span>
+            <div>
+              <input type="radio" name="id-cate" id="id-rd1">
+              <label for="id-rd1">增值税电子发票</label>
+              <div>
+                <p>
+                  <span>是否推送：</span>
+                  <span>
+                    <input type="radio" name="id-post" id="id-post-rad1">
+                    <label for="id-post-rad1">推送</label>
+                  </span>
+                  <span>
+                    <input type="radio" name="id-post" id="id-post-rad2">
+                    <label for="id-post-rad2">不推送</label>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    <i></i>推送邮箱：
+                  </span>
+                  <span><input type="email"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="id-btn">
+        <button>开票</button>
+      </div>
+    </div>
+    <div class="ii-history"></div>
+  </div>
+</body>
+
+</html>
