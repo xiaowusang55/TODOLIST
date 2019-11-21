@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/print.css">
+</head>
+<body>
+  
+  <div class="print-deposit" id="print-deposit" :data-list="JSON.stringify(checked)" :data-secret="JSON.stringify(roomPriceSecret)" :data-id="JSON.stringify(idNoSecret)">
+    <div class="pd-table">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>日期</th>
+            <th>房间</th>
+            <th>金额</th>
+            <th>支付方式</th>
+            <th>打印次数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in fake" :key="index" v-cloak>
+            <td><input type="checkbox" v-model="checked" :value="item" @click="selectOne"></td>
+            <td v-cloak>{{item.date}}</td>
+            <td v-cloak>{{item.roomNo}}</td>
+            <td v-cloak>{{item.total}}</td>
+            <td v-cloak>{{item.payway}}</td>
+            <td v-cloak>{{item.printCount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pd-bottom-secret dflex ">
+      <div class="pbs-secret dflex ml56">
+        <p class="mr14">
+          <input type="checkbox" id="ps-cb1" v-model="roomPriceSecret">
+          <label for="ps-cb1" >房价保密</label>
+        </p>
+        <p>
+          <input type="checkbox" id="ps-cb2" v-model="idNoSecret">
+          <label for="ps-cb2" >身份证号保密</label>
+        </p>
+      </div>
+      <div class="pbs-btn ml210">
+        <button class="pb-comfirm" @click="printDepositConfirm">确定</button>
+        <button>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../layui/layui.all.js"></script>
+  <script src="../layui/css/layui.css"></script>
+  <script src="../lib/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#print-deposit',
+      data: {
+        fake: [
+          {
+            date: '2019-11-19 09:08:58',
+            roomNo: '886132',
+            total: '100',
+            payway: '现金',
+            printCount: 0,
+            price: '999',
+            idNo: '3123213132313123135'
+          },
+          {
+            date: '2019-11-20 09:08:58',
+            roomNo: '886213',
+            total: '1010',
+            payway: '现金',
+            printCount: 1,
+            price: '9ddf99',
+            idNo: '3123213132313123131'
+          },
+          {
+            date: '2019-11-19 09:08:58',
+            roomNo: '886135',
+            total: '100',
+            payway: '现金',
+            printCount: 10,
+            price: '99sf92',
+            idNo: '31232131323131231323'
+          }
+        ],
+        checked: [],
+        roomPriceSecret: [],
+        idNoSecret: [],
+      },
+      methods: {
+        selectOne() {
+          if(this.checked) {
+            this.checked = [];
+          }
+        },
+        printDepositConfirm() {
+
+          if(!this.checked.length) {
+            alert('choose one')
+            return
+          }
+
+          layui.use('layer', function() {
+            let layer = layui.layer;
+
+            layer.open({
+              type: 2,
+              title: '押金单',
+              area: ['800px', '550px'],
+              content: './printDepositContent.html'
+            })
+          })
+        }
+      },
+
+    })
+  
+  </script>
+
+</body>
+</html>

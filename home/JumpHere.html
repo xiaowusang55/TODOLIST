@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/css/layui.css"></script>
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div id="container"></div>
+  <div id="test1"></div>
+
+
+  <script type="text/html" id="tmp">
+    <button id="anotherIframe">Another iframe</button>
+    {{each result item i}}
+    <ul>
+      <li>{{item[0]}}--{{item[1]}}</li>
+    </ul>
+    {{/each}}
+  </script>
+
+
+
+  <script src="./lib/template-web.js"></script>
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script>
+    layui.use(['layer', 'laypage'], function () {
+      let layer = layui.layer;
+      let laypage = layui.laypage;
+
+
+      FetchData(layer, laypage);
+    })
+
+    function FetchData(layer, laypage) {
+
+      let params = {
+        // q: '卫衣女 '
+      };
+      $.ajax({
+          type: 'GET',
+          url: 'https://suggest.taobao.com/sug?code=utf-8&q=卫衣&callback=cb',
+          data: params,
+          dataType: 'jsonp',
+          crossDomain: true,
+          success: function (data) {
+
+            // debugger;
+            console.log(data);
+            renderFn(data);
+            laypage.render({
+              elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                ,
+              limit: 5,
+              limits: [5, 10, 20, 30, 50],
+              count: data.result.length, //数据总数，从服务端得到
+              layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
+              jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                console.log(obj.limit); //得到每页显示的条数
+
+                //首次不执行
+                if (!first) {
+                  //do something
+                }
+              }
+            })
+          })
+
+      }
+
+      function renderFn(data) {
+        console.log(data);
+        $('#container').html(template('tmp', data));
+        $('#anotherIframe').on('click', function () {
+          layui.use('layer', function () {
+            let layer = layui.layer;
+
+            layer.open({
+              type: 2,
+              title: 'Another IFrame',
+              content: ['./demo.html'],
+              area: ['80%', '80%'],
+              btn: ['nop', 'yeah', 'either'],
+              btn3: function (index, el) {
+                console.log('btn3', index, el);
+                layer.close(index)
+                return false;
+              },
+              btn2: function (index, el) {
+                console.log('btn2');
+                return false;
+              },
+              btn1: function (index, el) {
+                console.log('btn1');
+                return false;
+              },
+              btnAlign: 'c',
+              closeBtn: '2',
+              shadeClose: true,
+              // anim: 1,
+              fixed: true,
+              scrollbar: false,
+              zIndex: layer.zIndex,
+              success: function (el) {
+                // layer.setTop(el)
+                // layer.prompt({
+                //   formType: 0,
+                //   value: '初始值',
+                //   title: '请输入值',
+                //   area: ['800px', '350px'] //自定义文本域宽高
+                // }, function (value, index, elem) {
+                //   console.log(value, elem); //得到value
+                //   layer.close(index);
+                // });
+                layer.tab({
+                  area: ['600px', '300px'],
+                  tab: [{
+                    title: 'TAB1',
+                    content: '<h1>sfsf</h1>'
+                  }, {
+                    title: 'TAB2',
+                    content: '内容2'
+                  }, {
+                    title: 'TAB3',
+                    content: '内容3'
+                  }]
+                });
+              }
+            })
+          })
+        })
+      }
+  </script>
+
+</body>
+
+</html>

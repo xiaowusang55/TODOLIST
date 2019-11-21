@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/css/layui.css"></script>
+  <style>
+    .fetch {
+      display: block;
+      width: 80px;
+      height: 30px;
+      margin: 20px auto;
+      background-color: teal;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .showlist {
+      width: 200px;
+      margin: 100px auto;
+    }
+
+    #page {
+      width: 500px;
+      margin: 100px auto;
+    }
+
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <button class="fetch">Fetch Data</button>
+  <div class="data-showbox"></div>
+  <div id="page"></div>
+
+  <script type="text/html" id="tmp">
+    <div class="showlist">
+      <ul>
+        {{each result item i}}
+        <li>
+          <!-- <img src="{{item.pic}}" alt="{{item.url}}"> -->
+          <h6>{{i + 1}}--{{item.author}} -- {{item.url}}</h6>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </script>
+
+
+
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script src="./lib/template-web.js"></script>
+  <script>
+    let respData = [
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "11",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1111",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1111",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "11",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1322",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "13453",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1646",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1fgsd",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1dgd",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1dfgs",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1bc",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1sf",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1hgj",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1bcvb",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1khj",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1oui",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1pi",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1m,.",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+        {
+        author: "Bernard Cesari",
+        link: "http://music.163.com/#/song?id=479642183",
+        lrc: "1",
+        pic: "http://p1.music.126.net/TlGtt07kQMMXivyJg1ggzw==/18715886929986155.jpg?param=300x300",
+        songid: 479642183,
+        title: "Suger",
+        type: "netease",
+        url: "http://music.163.com/song/media/outer/url?id=479642183.mp3"
+      },
+    ]
+
+
+    let params = {
+      name: 'suger'
+    }
+    $('.fetch').on('click', function () {
+      $.ajax({
+        method: 'GET',
+        url: 'https://api.apiopen.top/searchMusic?name=',
+        data: params,
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+
+          $('.data-showbox').html(template('tmp', data));
+          pageQuery(data)
+        }
+      })
+    })
+
+
+    function pageQuery(date) {
+      let data = date;
+      layui.use('laypage', function () {
+        let laypage = layui.laypage;
+
+        laypage.render({
+          elem: 'page',
+          layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'],
+          count: data.result.length,
+          limit: 4,
+          limits: [3, 6],
+          jump: function (obj, first) {
+            document.querySelector('.data-showbox').innerHTML = function() {
+              let arr = [];
+              // debugger;
+              let thisData = data.result.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+
+              layui.each(thisData, function(index, item) {
+                arr.push('<li>' + item.author + '</li>');
+              });
+              return arr.join('');
+            }();
+          }
+        })
+      })
+    }
+  </script>
+</body>
+
+</html>

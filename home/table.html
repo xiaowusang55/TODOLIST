@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <table lay-filter="demo">
+      <thead>
+        <tr>
+          <th lay-data="{field:'name', width:100}">姓名</th>
+          <th lay-data="{field:'age', width:100, sort: true}">年龄</th>
+          <th lay-data="{field:'cars', width:100}">车</th>
+          <th lay-data="{field:'clothes', width:100}">衣服</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in respData" :key="index">
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+          <td>{{item.cars}}</td>
+          <td>{{item.clothes}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script src="./layui-v2.5.5/layui/css/layui.css"></script>
+  <script src="./layui-v2.5.5/layui/lay/modules/table.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        respData: [{
+            "name": "haha1",
+            "age": 1953,
+            "cars": 2678,
+            "clothes": 20
+          },
+          {
+            "name": "haha2",
+            "age": 149,
+            "cars": 238,
+            "clothes": 209
+          },
+          {
+            "name": "haha3",
+            "age": 159,
+            "cars": 23453,
+            "clothes": 20
+          },
+          {
+            "name": "haha4",
+            "age": 179,
+            "cars": 235,
+            "clothes": 25670
+          },
+          {
+            "name": "haha5",
+            "age": 1559,
+            "cars": 25,
+            "clothes": 205
+          }
+        ]
+      },
+      mounted() {
+        layui.use('table', function() {
+          var table = layui.table;
+
+          //转换静态表格
+          table.init('demo', {
+            // height: 315 
+          }); 
+
+        })
+      },
+    })
+
+
+    // $.ajax({
+    //   type: 'GET',
+    //   url: './respData.json',
+    //   dataType: 'json',
+    //   success: function(data) {
+
+
+    //   }
+    // })
+  </script>
+
+</body>
+
+</html>

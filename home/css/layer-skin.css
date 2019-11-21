@@ -1,0 +1,9 @@
+body .custom-skin .layui-layer-ico {
+  background: url(https://www.baidu.com/img/baidu_resultlogo@2.png) no-repeat;
+  width: 88px;
+  height: 26px;
+  background-size: 100% 100%;
+}
+body .custom-skin1 .layui-layer-setwin .layui-layer-close1:hover {
+  background:url()
+}

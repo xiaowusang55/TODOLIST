@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="tab">
+    <ul>
+      <li data-num=0>button1</li>
+      <li data-num=1>button2</li>
+    </ul>
+  </div>
+  <div class="content1 item" style="display: none;">
+    <h1>content1</h1>
+  </div>
+  <div class="content2 item" style="display: none;">
+    <h1>content2</h1>
+  </div>
+
+  <script>
+
+    let count = 0;
+
+    // 方法二 事件委托 绑定 dataset 利用dataset == dataset 
+    document.querySelector('ul').addEventListener('mouseover', function(ev) {
+      if(ev.target.nodeName === 'LI') {
+        count = ev.target.dataset.num;
+        document.querySelectorAll('.item').forEach((item, index) => {
+          item.style.display = 'none';
+          if(index == count) {
+            document.querySelectorAll('.item')[index].style.display = 'block'
+          }
+        });
+      }
+    })
+    document.querySelector('ul').addEventListener('mouseout', function(ev) {
+      if(ev.target.nodeName === 'LI') {
+        count = ev.target.dataset.num;
+        // document.querySelectorAll('.item').forEach((item, index) => {
+        //   item.style.display = 'none';
+        //   if(index == count) {
+        //     document.querySelectorAll('.item')[index].style.display = 'block'
+        //   }
+        // });
+        document.querySelectorAll('.item').forEach((item, index) => {
+          item.style.display = 'none';
+        })
+      }
+    })
+
+
+    //方法一 循环 利用 index == count 条件控制; 也是vue v-if, v-show思想
+    // document.querySelectorAll('li').forEach((item, index) => {
+    //   item.addEventListener('click', function() {
+    //     count = index;
+    //     console.log(count);
+
+    //     document.querySelectorAll('.item').forEach((item, index) => {
+    //       item.style.display = 'none';
+    //       if(index == count) {
+    //         document.querySelectorAll('.item')[index].style.display = 'block';
+    //       }
+    //     })
+        
+    //   })
+    // })
+    
+
+
+  </script>
+
+</body>
+</html>

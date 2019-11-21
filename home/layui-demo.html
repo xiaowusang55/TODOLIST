@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/layui.js"></script>
+  <script src="https://www.layuicdn.com/layui-v2.5.5/css/layui.css"></script> 
+  <link rel="stylesheet" href="./css/layer-skin.css">
+</head>
+<body>
+  
+  <button>click me to jump!</button>
+
+
+
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script>
+    $('button').on('click', function() {
+      layui.use('layer', function() {
+        let layer = layui.layer;
+
+        let id = layer.load(2)
+
+        layer.config({
+          anim: -1,
+          isOutAnim: false
+        })
+
+        setTimeout(() => {
+          
+          layer.open({
+            type: 2,
+            title: ['welcome xiaowusang!', 'background-color: teal; color: #fff'],
+            content: './JumpHere.html',
+            area: ['600px', '300px'],
+            skin: 'custom-skin1',
+            offset: 'auto',
+            shadeClose: true,
+            id: 'hah',
+            anim: '3',
+            isOutAnim: false,
+            maxmin: true,
+            zIndex: layer.zIndex,
+            success: function(el) {
+              layer.setTop(el)
+              
+            },
+            resizing: function(el) {
+              console.log(el);
+            },
+            moveOut: true
+          })
+        }, 500);
+      })
+    })
+
+  </script>
+</body>
+</html>

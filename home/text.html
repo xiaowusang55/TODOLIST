@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #app {
+      position: relative;
+      height: 100vh;
+    }
+    
+    .banner {
+      width: 100px;
+      height: 30px;
+      border: 1px solid gray;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+      outline: none;
+    }
+    .banner:hover {
+      background-color: #4598cb;
+      color: #fff;
+      border: 1px solid transparent;
+    }
+    .banner:active {
+      background-color: #28a2ee;
+    }
+    .banner:focus {
+      color: red;
+    }
+    .pupup {
+      position: absolute;
+      top: 34px;
+      left: 0;
+    }
+    ul, li {
+      padding: 0;
+      margin: 0;
+    }
+    ul {
+      width: 100px;
+      border: 1px solid gray;
+      border-radius: 4px;
+    }
+    li {
+      background-color: rgb(218, 218, 218);
+    }
+    li:hover {
+      background-color: gray;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" @click.self="clickHide">
+    <button class="banner" @click.self='toggleClick'>
+      {{banner}}
+    </button>
+    <div class="pupup" v-show="lander">
+      <ul>
+        <li v-for="(item, index) in obj" :key="index" @click='hide(item.name)'>{{item.name}}</li>
+      </ul>
+    </div>
+    <costum-input v-model="msg"></costum-input>
+    <custum-checkbox v-model="lovingVue" value='aha'></custum-checkbox>
+    <h1>{{lovingVue}}</h1>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+
+
+    Vue.component('costum-input', {
+      props: ['msg'],
+      template: `
+        <div>
+          <input 
+            type='text'
+            :value='msg'
+            @input='emit($event)'
+          >
+        </div>
+      `,
+      methods: {
+        emit() {
+          this.$emit('input', event.target.value);
+        } 
+
+      }
+    })
+
+    Vue.component('custum-checkbox', {
+      model: {
+        prop: 'checked',
+        event: 'change'
+      },
+      props: {
+        checked: Boolean | String
+      },
+      template: `
+        <input 
+          type="checkbox"
+          :checked="checked"
+          @change="$emit('change', $event.target.checked)"
+        >
+      `
+    })
+
+
+
+    new Vue({
+      el: '#app',
+      data: {
+        obj: [
+          {name: 'cod', price: '231', type: 'fps'},
+          {name: 'bf4', price: '223', type: 'fps'},
+          {name: 'gta', price: '331', type: 'action'},
+        ],
+        banner: 'click me',
+        lander: false,
+        msg: "father",
+        lovingVue: ''
+      },
+      methods: {
+        toggleClick: function() {
+          this.lander = !this.lander;
+        },
+        hide: function(text) {
+          this.banner = text;
+          this.lander = false;
+        },
+        clickHide: function() {
+
+          console.log('object');
+          this.lander = false;
+        }
+      }
+    })
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .click-me {
+      width: 100px;
+      border: 1px solid teal;
+      border-radius: 6px;
+      padding: 4px 6px;
+      text-align: center;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    .pop-box {
+      position: absolute;
+      top: 50px;
+      left: 845px;
+      border: 1px solid teal;
+      width: 200px;
+      max-height: 200px;
+      overflow: auto;
+      border-radius: 4px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pop-box">
+    <p>item1</p>
+    <p>item1</p>
+    <p>item1</p>
+    <p><a target="_blank" href="https://www.baidu.com">baidu</a></p>
+  </div>
+  <div class="click-me">
+    <p class="target" >mouse over me</p>
+  </div>
+
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script>
+    let timer = null;
+
+    $('.target').on('mouseover', function () {
+      $('.pop-box').css('display', 'block');
+    })
+
+    $('.target').on('mouseout', function () {
+      // $('.pop-box').css('display', 'none');
+
+      timer = setTimeout(() => {
+        $('.pop-box').css('display', 'none');
+      }, 1000);
+
+      // $('.pop-box').on('mouseover', function() {
+      //   clearTimeout(timer);
+      //   console.log(timer);
+      //   $(this).css('display', 'block');
+      // });
+      // $('.pop-box').on('mouseout', function() {
+      //   $(this).css('display', 'none');
+      // })
+
+    })
+
+    $('.pop-box').on('mouseover', function () {
+      clearTimeout(timer);
+      console.log(timer);
+      $(this).css('display', 'block');
+    });
+    $('.pop-box').on('mouseout', function () {
+      $(this).css('display', 'none');
+    })
+  </script>
+
+
+
+</body>
+
+</html>
