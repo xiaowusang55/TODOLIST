@@ -98,66 +98,28 @@
       el: '#app',
       data: {
         dataSource: [],
-        // widowRoom: false,
-        // noWindowRoom: false,
-        // nearTheRoadRoom: false,
-        // towardSouthRoom: false,
         filterDeeperRoom: [],
       },
       computed: {
         hasWindow() {
-          // if (!this.widowRoom) {
-          // }
             return this.dataSource.filter(item => item.window === 1)
         },
         noWindow() {
-          // if (!this.noWindowRoom) {
-          // }
             return this.dataSource.filter(item => item.window === 0)
         },
         nearTheRoad() {
-          // if (!this.nearTheRoadRoom) {
-          // }
             return this.dataSource.filter(item => item.nearRoad === 1)
         },
         towardSouth() {
-          // if (!this.towardSouthRoom) {
-          // }
             return this.dataSource.filter(item => item.roomToward === '朝南')
         },
         filteredRoom() {
           return [...new Set(this.filterDeeperRoom.reduce((acc, cur) => acc.concat(cur), []))]
         }
-        ,
-        // filterDeeper() {
-        //   if (this.widowRoom) {
-        //     for (let i = 0; i < this.hasWindow.length; i++) {
-        //       this.filterDeeperRoom.push(this.hasWindow[i]);
-        //     }
-        //   } 
-        //   if (this.noWindowRoom) {
-        //     for (let i = 0; i < this.noWindow.length; i++) {
-        //       this.filterDeeperRoom.push(this.noWindow[i]);
-        //     }
-        //   }
-        //   if (this.nearTheRoadRoom) {
-        //     for (let i = 0; i < this.nearTheRoad.length; i++) {
-        //       this.filterDeeperRoom.push(this.nearTheRoad[i]);
-        //     }
-        //   }
-        //   if (this.towardSouthRoom) {
-        //     for (let i = 0; i < this.towardSouth.length; i++) {
-        //       this.filterDeeperRoom.push(this.towardSouth[i]);
-        //     }
-        //   }
-
-        //   return [...new Set(this.filterDeeperRoom)];
-        // }
       },
       methods: {},
       mounted() {
         this.dataSource = mockData.respData;
-        // this.filterDeeper();
       }
     })
   </script>
