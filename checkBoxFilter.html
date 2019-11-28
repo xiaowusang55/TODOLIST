@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>{{filteredRoom}}-</h1>
+    <h1><span v-for="(item, index) in filteredRoom" :key="index">{{item.roomNo}}</span>-</h1>
+    <div class="cb">
+      <span>
+        <input type="checkbox" id="cb1" v-model="filterDeeperRoom" :value="hasWindow">
+        <label for="cb1">有窗</label>
+      </span>
+      <span>
+        <input type="checkbox" id="cb2" v-model="filterDeeperRoom" :value="noWindow">
+        <label for="cb2">无窗</label>
+      </span>
+      <span>
+        <input type="checkbox" id="cb3" v-model="filterDeeperRoom" :value="nearTheRoad">
+        <label for="cb3">靠马路</label>
+      </span>
+      <span>
+        <input type="checkbox" id="cb4" v-model="filterDeeperRoom" :value="towardSouth">
+        <label for="cb4">朝南</label>
+      </span>
+    </div>
+    <div>
+      <ul>
+        <li v-for="(item, index) in filteredRoom" :key="index">{{item.roomNo}}</li>
+      </ul>
+      <ul>
+        <li v-for="(item, index) in dataSource" :key="index">{{item.roomNo}}</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script>
+    let mockData = {
+      code: 200,
+      respData: [{
+          roomNo: 'A0001',
+          person: 'jack',
+          roomId: 90,
+          roomType: 'single room',
+          window: 1,
+          nearRoad: 1,
+          roomToward: '朝南'
+        },
+        {
+          roomNo: 'A0002',
+          person: 'rose',
+          roomId: 92,
+          roomType: 'vip room',
+          window: 0,
+          nearRoad: 0,
+          roomToward: '朝西'
+        },
+        {
+          roomNo: 'A0003',
+          person: 'bily',
+          roomId: 93,
+          roomType: 'time room',
+          window: 1,
+          nearRoad: 0,
+          roomToward: '朝西'
+        },
+        {
+          roomNo: 'A0004',
+          person: 'bob',
+          roomId: 94,
+          roomType: 'set room',
+          window: 0,
+          nearRoad: 1,
+          roomToward: '朝南'
+        },
+        {
+          roomNo: 'A0005',
+          person: 'lily',
+          roomId: 95,
+          roomType: 'president room',
+          window: 1,
+          nearRoad: 1,
+          roomToward: '朝北'
+        }
+      ],
+      total: 5
+    }
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        dataSource: [],
+        // widowRoom: false,
+        // noWindowRoom: false,
+        // nearTheRoadRoom: false,
+        // towardSouthRoom: false,
+        filterDeeperRoom: [],
+      },
+      computed: {
+        hasWindow() {
+          // if (!this.widowRoom) {
+          // }
+            return this.dataSource.filter(item => item.window === 1)
+        },
+        noWindow() {
+          // if (!this.noWindowRoom) {
+          // }
+            return this.dataSource.filter(item => item.window === 0)
+        },
+        nearTheRoad() {
+          // if (!this.nearTheRoadRoom) {
+          // }
+            return this.dataSource.filter(item => item.nearRoad === 1)
+        },
+        towardSouth() {
+          // if (!this.towardSouthRoom) {
+          // }
+            return this.dataSource.filter(item => item.roomToward === '朝南')
+        },
+        filteredRoom() {
+          return [...new Set(this.filterDeeperRoom.reduce((acc, cur) => acc.concat(cur), []))]
+        }
+        ,
+        // filterDeeper() {
+        //   if (this.widowRoom) {
+        //     for (let i = 0; i < this.hasWindow.length; i++) {
+        //       this.filterDeeperRoom.push(this.hasWindow[i]);
+        //     }
+        //   } 
+        //   if (this.noWindowRoom) {
+        //     for (let i = 0; i < this.noWindow.length; i++) {
+        //       this.filterDeeperRoom.push(this.noWindow[i]);
+        //     }
+        //   }
+        //   if (this.nearTheRoadRoom) {
+        //     for (let i = 0; i < this.nearTheRoad.length; i++) {
+        //       this.filterDeeperRoom.push(this.nearTheRoad[i]);
+        //     }
+        //   }
+        //   if (this.towardSouthRoom) {
+        //     for (let i = 0; i < this.towardSouth.length; i++) {
+        //       this.filterDeeperRoom.push(this.towardSouth[i]);
+        //     }
+        //   }
+
+        //   return [...new Set(this.filterDeeperRoom)];
+        // }
+      },
+      methods: {},
+      mounted() {
+        this.dataSource = mockData.respData;
+        // this.filterDeeper();
+      }
+    })
+  </script>
+</body>
+
+</html>

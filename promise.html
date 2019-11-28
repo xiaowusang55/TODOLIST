@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <div id="app">
+    <button @click="showFirstTen">show first 10</button>
+    <select name="" id="">
+      <option v-for="(item, index) of dataSource" :key="index">{{item.title}}</option>
+    </select>
+    <ul>
+      <li v-for="(item, index) of dataSource" :key="index">{{item.title}}</li>
+    </ul>
+  </div>
+
+
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script src="./home/lib/jquery-3.4.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        dataSource: []
+      },
+      methods: {
+        fetchData() {
+          return new Promise((resolve, reject) => {
+            $.ajax({
+              methods: 'GET',
+              url: 'https://jsonplaceholder.typicode.com/todos/',
+              dataType: 'json',
+              success: function(data) {
+                
+                // vm.dataSource = data;
+                resolve(data)
+              }
+            })
+          })
+        },
+        showFirstTen() {
+          this.dataSource.splice(10);
+        }
+      },
+      mounted() {
+
+        this.fetchData().then(res => {
+          console.log(res);
+          this.dataSource = res;
+        })
+        // axios.get('https://jsonplaceholder.typicode.com/todos')
+        // .then((res) => {
+        //   this.dataSource = res.data;
+        // })
+        // .catch((err) => console.log(err))
+        
+        
+
+        // $.ajax({
+        //   methods: 'GET',
+        //   url: 'https://jsonplaceholder.typicode.com/todos/',
+        //   dataType: 'json',
+        //   success: function(data) {
+            
+        //     vm.dataSource = data;
+        //     console.log(vm.dataSource);
+        //   }
+        // })
+
+      }
+    })
+  </script>
+</body>
+</html>

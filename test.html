@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+    }
+
+    .clearfix::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+
+    .dflex {
+      display: flex;
+    }
+
+    .pof {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    .aside {
+      width: 100px;
+      overflow: auto;
+    }
+
+    .aside li {
+      text-align: center;
+      height: 100px;
+      line-height: 100px;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .main {
+      margin-left: 100px;
+      flex-grow: 1;
+    }
+
+    .main li {
+      height: 300px;
+      border: 1px solid gray;
+      margin-bottom: 2px;
+      line-height: 300px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="app">
+    <div class="container dflex">
+      <div class="aside pof">
+        <ul>
+          <li type=1>item1</li>
+          <li type=2>item2</li>
+          <li type=3>item3</li>
+          <li type=4>item4</li>
+          <li type=5>item5</li>
+          <li type=6>item6</li>
+          <li type=7>item7</li>
+          <li type=8>item8</li>
+          <li type=9>item9</li>
+        </ul>
+      </div>
+      <div class="main"> 
+        <ul ref="hah">
+          <li counter=1 @scroll="scrollListener()">content1</li>
+          <li counter=2 @scroll="scrollListener()">content2</li>
+          <li counter=3 @scroll="scrollListener()">content3</li>
+          <li counter=4 @scroll="scrollListener()">content4</li>
+          <li counter=5 @scroll="scrollListener()">content5</li>
+          <li counter=6 @scroll="scrollListener()">content6</li>
+          <li counter=7 @scroll="scrollListener()">content7</li>
+          <li counter=8 @scroll="scrollListener()">content8</li>
+          <li counter=9 @scroll="scrollListener()">content9</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        scrollListener() {
+          console.log(this.$ref.hah);
+        },
+      }
+    })
+  </script>
+
+</body>
+
+</html>
