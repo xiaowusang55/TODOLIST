@@ -32,10 +32,10 @@
       </span>
     </div>
     <div>
-      <ul>
+      <ul v-if="filteredRoom.length > 0">
         <li v-for="(item, index) in filteredRoom" :key="index">{{item.roomNo}}</li>
       </ul>
-      <ul>
+      <ul v-else>
         <li v-for="(item, index) in dataSource" :key="index">{{item.roomNo}}</li>
       </ul>
     </div>
