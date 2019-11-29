@@ -11,29 +11,36 @@
 <body>
 
   <div id="app">
-    <h1>{{filteredRoom}}-</h1>
-    <h1><span v-for="(item, index) in filteredRoom" :key="index">{{item.roomNo}}</span>-</h1>
+    <h1>{{hasWindow}}-{{noWindow}}-{{nearRoad}}-{{roomToward}}-</h1>
+    <!-- <h1>{{final()}}</h1> -->
+    <!-- <div>
+      <h4 style="color: teal">{{widthWindow}}</h4>
+      <h4 style="color: tomato">{{widthOutWindow}}</h4>
+      <h4 style="color: rgb(184, 94, 109)">{{nearTheRoad}}</h4>
+      <h4 style="color: skyblue">{{roomDirection}}</h4>
+    </div> -->
+    <h1><span v-for="(item, index) in final()" :key="index">{{item.roomNo}}</span>-</h1>
     <div class="cb">
       <span>
-        <input type="checkbox" id="cb1" v-model="filterDeeperRoom" :value="hasWindow">
+        <input type="checkbox" id="cb1" v-model="hasWindow">
         <label for="cb1">有窗</label>
       </span>
       <span>
-        <input type="checkbox" id="cb2" v-model="filterDeeperRoom" :value="noWindow">
+        <input type="checkbox" id="cb2" v-model="noWindow">
         <label for="cb2">无窗</label>
       </span>
       <span>
-        <input type="checkbox" id="cb3" v-model="filterDeeperRoom" :value="nearTheRoad">
+        <input type="checkbox" id="cb3" v-model="nearRoad">
         <label for="cb3">靠马路</label>
       </span>
       <span>
-        <input type="checkbox" id="cb4" v-model="filterDeeperRoom" :value="towardSouth">
+        <input type="checkbox" id="cb4" v-model="roomToward">
         <label for="cb4">朝南</label>
       </span>
     </div>
     <div>
-      <ul v-if="filteredRoom.length > 0">
-        <li v-for="(item, index) in filteredRoom" :key="index">{{item.roomNo}}</li>
+      <ul v-if="final().length > 0">
+        <li v-for="(item, index) in final()" :key="index">{{item.roomNo}}</li>
       </ul>
       <ul v-else>
         <li v-for="(item, index) in dataSource" :key="index">{{item.roomNo}}</li>
@@ -98,26 +105,52 @@
       el: '#app',
       data: {
         dataSource: [],
-        filterDeeperRoom: [],
+        hasWindow: false,
+        noWindow: false,
+        nearRoad: false,
+        roomToward: false
       },
       computed: {
-        hasWindow() {
-            return this.dataSource.filter(item => item.window === 1)
+        widthWindow() {
+          if (this.hasWindow) {
+            return this.dataSource.filter(item => item.window === 1);
+          }
         },
-        noWindow() {
-            return this.dataSource.filter(item => item.window === 0)
+        widthOutWindow() {
+          if (this.noWindow) {
+            return this.dataSource.filter(item => item.window === 0);
+          }
         },
         nearTheRoad() {
-            return this.dataSource.filter(item => item.nearRoad === 1)
+          if (this.nearRoad) {
+            return this.dataSource.filter(item => item.nearRoad === 1);
+          }
         },
-        towardSouth() {
+        roomDirection() {
+          if (this.roomToward) {
             return this.dataSource.filter(item => item.roomToward === '朝南')
-        },
-        filteredRoom() {
-          return [...new Set(this.filterDeeperRoom.reduce((acc, cur) => acc.concat(cur), []))]
+          }
         }
       },
-      methods: {},
+      methods: {
+        final() {
+          let arr = [];
+          if (this.widthWindow) {
+            arr[0] = this.widthWindow
+          }
+          if (this.widthOutWindow) {
+            arr[1] = this.widthOutWindow
+          }
+          if (this.nearTheRoad) {
+            arr[2] = this.nearTheRoad
+          }
+          if (this.roomDirection) {
+            arr[3] = this.roomDirection
+          }
+
+          return [...new Set(arr.reduce((acc, cur) => acc.concat(cur), []))];
+        }
+      },
       mounted() {
         this.dataSource = mockData.respData;
       }
