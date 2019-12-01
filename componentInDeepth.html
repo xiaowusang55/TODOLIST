@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <div id="app">
+    <prop-validation 
+      prop-c="required true" 
+      prop-f="danger" 
+      :prop-e="propsFnc" 
+      :prop-p="p2"
+      href="https://www.baidu.com"
+      target="_blank"
+      style="text-decoration: none; color: teal; font-size: 20px;"
+      class="active"
+    ></prop-validation>
+  </div>
+
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script>
+
+    function Person(first, last) {
+      this.firstName = first;
+      this.lastName = last;
+    }
+
+    let p1 = new Person('jack', 'smith')
+
+    Vue.component('mutate-props', {
+      props: ['initialCounter', 'size'],
+      data() {
+        return {
+          counter: this.initialCounter
+        }
+      },
+      computed: {
+        normalSize() {
+          return this.size.tirm().toLowerCase();
+        }
+      }
+    })
+
+    Vue.component('prop-validation', {
+      inheritAttrs: false,
+      props: {
+        propA: Number,
+        propB: [String, Number],
+        propC: {
+          type: String,
+          required: true
+        },
+        propD: {
+          type: Number,
+          default: 100
+        },
+        propE: {
+          type: [Object, String, Function],
+          default () {
+            // return {'name': 'hello vue.js'}
+            // return ['hello', 'vue.js']
+            return 'hello Vue.js'
+          }
+        },
+        propF: {
+          validator(value) {
+            console.log('validator');
+            return ['success', 'warning', 'danger'].indexOf(value) !== -1
+          }
+        },
+        propG: {
+          type: Date,
+          default () {
+            return new Date();
+          }
+        },
+        propP: {
+          type: Person,
+        }
+      },
+      template: `
+        <div>
+          <h1>{{this.propP}}</h1>
+          <a
+            v-bind='$attrs'
+          >i am a link</a>
+        </div>
+      `,
+      beforeCreate() {
+        console.log('bofore create')
+      },
+      created() {
+        console.log('created');
+      },
+      mounted() {
+        console.log(this);
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        post: {
+          id: 1,
+          title: 'My Journey with Vue'
+        },
+        p1: p1,
+        p2: {
+          firstName: 'bob',
+          lastName: 'sun'
+        }
+      },
+      methods: {
+        propsFnc() {
+          console.log('hah')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

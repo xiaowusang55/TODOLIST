@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app">
+    <label>
+      cb1
+      <input 
+        type="checkbox"
+        :checked="checked"
+        @change="checked = $event.target.checked"
+        name='ra'
+        value="on"
+      >
+      {{cb1}}
+    </label>
+    <br>
+    <label>
+      cb2
+      <input 
+        type="checkbox"
+        :checked="checked"
+        @change="checked = $event.target.checked"
+        name='ra'
+        value="off"
+      >
+      {{cb2}}
+    </label>
+    <h1>{{checked}}</h1>
+  </div>
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script>
+  
+    new Vue({
+      el: '#app',
+      data: {
+        cb1: '',
+        cb2: '',
+        checked: []
+      }
+    })
+  
+  </script>
+</body>
+</html>
