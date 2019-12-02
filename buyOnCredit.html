@@ -81,6 +81,12 @@
       $(".bp-dropdown").css('display', 'none');
       $(".iconfont.arrow-down").removeClass('active-arrow');
     })
+
+    // console.log($(window.parent.document)[0].body);
+    let bodyParent = $(window.parent.document)[0].body;
+    let target = bodyParent.querySelectorAll('li');
+    // let target = $('bodyParent li')
+    console.log(target);
   </script>
 </body>
 </html>

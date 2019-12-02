@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body data-checkinno='234242424' data-roomid='789' data-subcheckinno='5349583543454'>
+
+  <div class="container">
+    <button class="btn">Click</button>
+    <ul>
+      <li id="1">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>
+        <ul>
+          <li id="7">7</li>
+          <li id="8">8</li>
+          <li>9</li>
+        </ul>
+      </li>
+    </ul>
+    <ul>
+      <li><input type="checkbox" id="1"></li>
+      <li><input type="checkbox" id="2"></li>
+      <li><input type="checkbox" id="3"></li>
+      <li><input type="checkbox" id="4"></li>
+      <li><input type="checkbox" id="5"></li>
+      <li><input type="checkbox" id="6"></li>
+    </ul>
+  </div>
+
+
+
+  <script src="./home/layui/layui.js"></script>
+  <script src="./home/lib/jquery-3.4.1.js"></script>
+  <script>
+    layui.use('layer', function () {
+      let layer = layui.layer;
+
+      $('.btn').on('click', function () {
+        layer.open({
+          type: 2,
+          area: ['1200px', '600px'],
+          content: './buyOnCredit.html'
+        })
+      })
+    })
+
+
+    let arr = [];
+    let ids = '';
+    let params = null;
+    $('input[type="checkbox"]').on('click', function () {
+      if ($('input[type="checkbox"]:checked').length > 0) {
+        arr = [];
+        $('input[type="checkbox"]:checked').each(function () {
+          arr.push($(this).attr('id'));
+          ids = arr.join(',');
+          params = {
+            checkinNo: $("body").attr('data-checkinno'),
+            roomId: $('body').attr('data-roomid'),
+            subCheckinNo: $('body').attr('data-subcheckinno'),
+            id: ids
+          }
+          $('body').attr('params', JSON.stringify(params));
+
+        })
+      } else {
+        $('body').removeAttr('params')
+      }
+    })
+  </script>
+</body>
+
+</html>
