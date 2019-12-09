@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <div id="app">
+    <input type="number" v-model.number="inputValue">
+    <input type="number" v-model.number="inputValue1">
+    <button @click="fn">入账</button>
+  </div>
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script src="./home/lib/jquery-3.4.1.js"></script>
+  <script>
+    
+    let p = {
+      id: 6,
+      code: 12343242
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        inputValue: 12,
+        inputValue1: '',
+        params: {},
+        isShow: true
+      },
+      methods: {
+        fn() {
+          if(this.isShow) {
+            this.params.amount = this.inputValue;
+          }
+          console.log('clicked',this.params);
+        }
+      },
+      mounted() {
+        this.params = Object.assign({}, p, {
+          amount: this.inputValue
+        })
+        console.log('mounted',this.params);
+      }
+    })
+    
+  </script>
+</body>
+</html>

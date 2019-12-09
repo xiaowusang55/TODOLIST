@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul {
+      display: flex;
+    }
+    li {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div>
+      <label>
+        <input type="checkbox" v-model="hasWindow">
+        有窗
+      </label>
+      <label>
+        <input type="checkbox" v-model="nearRoad">
+        靠马路
+      </label>
+      <label>
+        <input type="checkbox" v-model="towardSouth">
+        朝南
+      </label>
+      <label>
+        <input type="checkbox" v-model="smokeLess">
+        无烟
+      </label>
+      <label>
+        <input type="checkbox" v-model="quiteness">
+        安静
+      </label>
+    </div>
+    <div>
+      <ul>
+        <!-- <template v-if="hasWindow">
+          <li v-for="(item, index) in dataSource" :key="index+'a'" v-if="item.window === 1">{{item.roomNo}}</li>
+        </template>
+        <template v-if="nearRoad">
+          <li v-for="(item, index) in dataSource" :key="index+'b'" v-if="item.nearRoad === 1">{{item.roomNo}}</li>
+        </template>
+        <template v-if="towardSouth">
+          <li v-for="(item, index) in dataSource" :key="index+'c'" v-if="item.roomToward === '朝南'">{{item.roomNo}}</li>
+        </template>
+        <template v-if="smokeLess">
+          <li v-for="(item, index) in dataSource" :key="index+'d'" v-if="item.smokeless === 1">{{item.roomNo}}</li>
+        </template>
+        <template v-if="quiteness">
+          <li v-for="(item, index) in dataSource" :key="index+'e'" v-if="item.quiet === 1">{{item.roomNo}}</li>
+        </template> -->
+
+        <template v-if="hasWindow && nearRoad">
+          <li v-for="(item, index) in dataSource" :key="index+'a'" v-if="item.window === 1 && item.nearRoad === 1">{{item.roomNo}}</li>
+        </template>
+        <template v-else-if="hasWindow && nearRoad && roomToward">
+          <li v-for="(item, index) in dataSource" :key="index+'a'" v-if="item.window === 1 && item.nearRoad === 1 && item.roomToward === '朝南'">{{item.roomNo}}</li>
+        </template>
+        <template v-else-if="hasWindow && nearRoad && roomToward && smokeless">
+          <li v-for="(item, index) in dataSource" :key="index+'a'" v-if="item.window === 1 && item.nearRoad === 1 && item.roomToward === '朝南' && item.smokeless === 1">{{item.roomNo}}</li>
+        </template>
+        <template v-else-if="hasWindow && nearRoad && roomToward && smokeless && quiet">
+          <li v-for="(item, index) in dataSource" :key="index+'a'" v-if="item.window === 1 && item.nearRoad === 1 && item.roomToward === '朝南' && item.smokeless === 1 && item.quiet === 1">{{item.roomNo}}</li>
+        </template>
+      </ul>
+    </div>
+  </div>
+
+
+  <script src="./home/lib/vue.js"></script>
+  <script src="./scripts/filterRoom.js"></script>
+</body>
+</html>
